@@ -7,31 +7,42 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root { --pink-bg: #fff5f8; --accent: #d81b60; --text: #5d4037; }
-        body, html { 
-            margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; 
-            background: var(--pink-bg); color: var(--text);
-            scroll-behavior: smooth; overflow-x: hidden;
-        }
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        body, html { margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; background: var(--pink-bg); color: var(--text); scroll-behavior: smooth; overflow-x: hidden; }
+        
+        /* Անիմացիա բաժինների համար */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-in-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
+
         #intro { display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; text-align: center; padding: 20px; }
-        .title { font-size: 3rem; color: var(--accent); font-weight: 700; letter-spacing: 5px; margin: 0; }
-        .calendar-container { background: white; padding: 15px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); margin: 20px 0; width: 260px; }
-        .calendar-month { font-weight: bold; color: var(--accent); margin-bottom: 10px; font-size: 0.9rem; }
-        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; font-size: 0.7rem; }
-        .calendar-day.highlight { background: var(--accent); color: white; border-radius: 50%; font-weight: bold; padding: 3px; }
-        .timer { display: flex; gap: 8px; margin: 20px 0; justify-content: center; }
-        .timer-unit { background: white; padding: 8px; border-radius: 12px; min-width: 45px; box-shadow: 0 5px 15px rgba(216,27,96,0.05); color: var(--accent); font-weight: bold; }
-        .timer-unit small { font-size: 0.5rem; display: block; color: #aaa; text-transform: uppercase; }
-        .rsvp-card { background: white; padding: 25px; border-radius: 30px; max-width: 300px; margin: 40px auto; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: left; }
-        label { display: block; margin-top: 15px; font-size: 0.75rem; font-weight: bold; color: var(--accent); }
-        input, select { width: 100%; padding: 10px; margin: 5px 0; border-radius: 10px; border: 1px solid #fce4ec; box-sizing: border-box; }
-        .btn { background: var(--accent); color: white; padding: 15px; border: none; border-radius: 30px; width: 100%; cursor: pointer; font-weight: bold; margin-top: 20px; }
-        .handwritten { font-family: 'Dancing Script', cursive; font-size: 2rem; color: var(--accent); }
-        #music-btn { position: fixed; top: 20px; right: 20px; z-index: 1000; background: white; border-radius: 50%; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .title { font-size: 3.5rem; color: var(--accent); font-weight: 700; letter-spacing: 8px; margin: 0; animation: fadeIn 2s; }
+        
+        /* Թայմերի սիրուն ոճը */
+        .timer { display: flex; gap: 10px; margin: 30px 0; justify-content: center; }
+        .timer-unit { 
+            background: white; padding: 15px; border-radius: 20px; min-width: 60px; 
+            box-shadow: 0 10px 20px rgba(216,27,96,0.1); 
+            color: var(--accent); font-weight: bold; font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+        .timer-unit:hover { transform: scale(1.1); }
+        .timer-unit small { font-size: 0.6rem; display: block; color: #aaa; text-transform: uppercase; margin-top: 5px; }
+
+        .calendar-container { background: white; padding: 20px; border-radius: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); margin: 25px 0; width: 280px; }
+        .calendar-month { font-weight: bold; color: var(--accent); margin-bottom: 12px; }
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; font-size: 0.8rem; }
+        .calendar-day.highlight { background: var(--accent); color: white; border-radius: 50%; font-weight: bold; padding: 5px; animation: pulse 2s infinite; }
+
+        .info-card, .rsvp-card { background: white; padding: 30px; border-radius: 35px; box-shadow: 0 15px 35px rgba(0,0,0,0.05); max-width: 320px; margin: 40px auto; text-align: center; }
+        input, select { width: 100%; padding: 14px; margin: 10px 0; border-radius: 15px; border: 1px solid #fce4ec; box-sizing: border-box; font-size: 1rem; }
+        .btn { background: var(--accent); color: white; padding: 18px; border: none; border-radius: 40px; width: 100%; cursor: pointer; font-weight: bold; font-size: 1.1rem; box-shadow: 0 5px 15px rgba(216,27,96,0.3); }
+        
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+        
+        #music-btn { position: fixed; top: 20px; right: 20px; z-index: 1000; background: white; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1); font-size: 24px; }
     </style>
 </head>
-<body>
+    <body>
     <div id="music-btn" onclick="toggleMusic()">🎵</div>
     <audio id="bgMusic" loop>
         <source src="ino.mp3" type="audio/mpeg">
@@ -39,7 +50,7 @@
 
     <section id="intro" class="reveal active">
         <h1 class="title">KARA'S</h1>
-        <p>Birthday Party</p>
+        <div style="font-family: 'Dancing Script', cursive; font-size: 2.5rem; color: var(--accent);">13th Birthday</div>
         
         <div class="calendar-container">
             <div class="calendar-month">ՄԱՅԻՍ 2026</div>
@@ -51,8 +62,6 @@
             </div>
         </div>
 
-        <div class="handwritten">սպասում եմ քեզ...</div>
-        
         <div class="timer">
             <div class="timer-unit"><span id="days">0</span><small>օր</small></div>
             <div class="timer-unit"><span id="hours">0</span><small>ժամ</small></div>
@@ -62,61 +71,71 @@
     </section>
 
     <section class="reveal">
+        <div class="info-card">
+            <h3 style="color: var(--accent);">📍 ՈՐՏԵ՞Ղ</h3>
+            <p><b>«Բարդիների պուրակ»</b></p>
+            <p style="font-size: 0.9rem;">Մայիսի 5, ժամը՝ 17:00</p>
+            <a href="https://maps.google.com/?q=Bardineri+Purak" target="_blank" style="color:#4285F4; text-decoration:none; font-weight:bold;">📍 Տեսնել Քարտեզում</a>
+        </div>
+    </section>
+
+    <section class="reveal">
         <div class="rsvp-card">
-            <h2 style="text-align: center; color: var(--accent); margin: 0;">RSVP</h2>
-            <p style="text-align: center; font-size: 0.7rem; margin-bottom: 20px;">Հետադարձ կապ</p>
-            
-            <label>Անուն Ազգանուն</label>
-            <input type="text" id="guestName" placeholder="Մուտքագրեք...">
-            
-            <label>Հյուրերի քանակ</label>
+            <h2 style="color: var(--accent);">RSVP</h2>
+            <input type="text" id="guestName" placeholder="Քո անունը">
             <select id="guestCount">
                 <option value="1">1 հոգի</option>
                 <option value="2">2 հոգի</option>
                 <option value="3">3 հոգի</option>
-                <option value="4+">4 և ավել</option>
+                <option value="4+">4+</option>
             </select>
-
-            <label>Քանի՞ մեծ և քանի՞ երեխա</label>
-            <input type="text" id="details" placeholder="Օրինակ՝ 2 մեծ, 1 երեխա">
-
-            <button class="btn" onclick="sendRSVP()">ՀԱՍՏԱՏԵԼ</button>
+            <input type="text" id="details" placeholder="Քանի՞ մեծ, քանի՞ երեխա">
+            <button class="btn" onclick="sendToWhatsApp()">ՀԱՍՏԱՏԵԼ</button>
         </div>
     </section>
-    <script>
+        <script>
         const audio = document.getElementById("bgMusic");
         function toggleMusic() {
             if (audio.paused) { audio.play(); document.getElementById("music-btn").innerText = "🔊"; }
             else { audio.pause(); document.getElementById("music-btn").innerText = "🔇"; }
         }
 
+        // Սահուն հայտնվելու էֆեկտը
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                if (elementTop < windowHeight - 50) { reveals[i].classList.add("active"); }
+                if (elementTop < windowHeight - 100) {
+                    reveals[i].classList.add("active");
+                }
             }
         }
         window.addEventListener('scroll', reveal);
 
+        // Թայմերի աշխատանքը
         const targetDate = new Date(2026, 4, 5, 17, 0, 0).getTime();
         setInterval(() => {
             const now = new Date().getTime();
             const diff = targetDate - now;
+            
             document.getElementById("days").innerText = Math.max(0, Math.floor(diff / (1000 * 60 * 60 * 24)));
             document.getElementById("hours").innerText = Math.max(0, Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
             document.getElementById("mins").innerText = Math.max(0, Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)));
             document.getElementById("secs").innerText = Math.max(0, Math.floor((diff % (1000 * 60)) / 1000));
         }, 1000);
 
-        function sendRSVP() {
+        function sendToWhatsApp() {
             const name = document.getElementById("guestName").value;
-            if (name) { alert("Շնորհակալություն, " + name + "!"); }
-            else { alert("Խնդրում եմ լրացնել անունը:"); }
+            const count = document.getElementById("guestCount").value;
+            const details = document.getElementById("details").value;
+            if (name && details) {
+                const msg = `Ողջույն Կառա՛, ես ${name}-ն եմ: %0AԿգամ քո ծննդին ${count} հոգով: %0A(${details})`;
+                window.open(`https://wa.me/37496872922?text=${msg}`);
+            } else { alert("Լրացրու բոլոր դաշտերը ✨"); }
         }
         reveal();
     </script>
 </body>
 </html>
-    
+        
