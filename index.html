@@ -3,132 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kara's 13th Birthday</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-    :root { --pink-bg: #fff5f8; --accent: #d81b60; --text: #5d4037; }
-    body, html { margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; background: var(--pink-bg); color: var(--text); scroll-behavior: smooth; overflow-x: hidden; text-align: center; }
-    
-    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
-    .reveal.active { opacity: 1; transform: translateY(0); }
-
-    #intro { display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; }
-    .title { font-size: 3.5em; color: var(--accent); font-weight: 700; letter-spacing: 5px; margin: 0; }
-    
-    .timer { display: flex; gap: 8px; margin: 20px 0; font-weight: bold; justify-content: center; width: 100%; }
-    .timer-unit { background: white; padding: 10px; border-radius: 15px; min-width: 55px; box-shadow: 0 5px 15px rgba(216,27,96,0.05); color: var(--accent); font-size: 1.3em; }
-    .timer-unit small { font-size: 0.4em; display: block; color: #aaa; text-transform: uppercase; }
-
-    .timing-container { position: relative; max-width: 280px; margin: 40px auto; padding-left: 45px; text-align: left; }
-    .timing-container::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px; background: #fce4ec; }
-    .timing-item { position: relative; margin-bottom: 35px; }
-    .timing-item::before { content: ''; position: absolute; left: -42px; top: 5px; width: 14px; height: 14px; background: var(--accent); border-radius: 50%; border: 3px solid white; }
-
-    .rsvp-card { background: white; padding: 25px; border-radius: 30px; max-width: 320px; margin: 20px auto; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-    input { width: 100%; padding: 12px; margin: 8px 0; border-radius: 15px; border: 1px solid #fce4ec; box-sizing: border-box; font-size: 14px; }
-    .btn { background: var(--accent); color: white; padding: 15px; border: none; border-radius: 30px; font-weight: bold; width: 100%; cursor: pointer; font-size: 16px; margin-top: 10px; }
-
-    .handwritten { font-family: 'Dancing Script', cursive; font-size: 2.8em; color: var(--accent); margin-top: 30px; }
-    #music-btn { position: fixed; top: 20px; right: 20px; z-index: 1000; background: white; border-radius: 50%; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-</style>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        :root { --pink-bg: #fff5f8; --accent: #d81b60; --text: #5d4037; }
+        body, html { 
+            margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; 
+            background: var(--pink-bg); color: var(--text);
+            scroll-behavior: smooth; overflow-x: hidden;
+        }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        #intro { display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; text-align: center; padding: 20px; }
+        .title { font-size: 3rem; color: var(--accent); font-weight: 700; letter-spacing: 5px; margin: 0; }
+        .calendar-container { background: white; padding: 15px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); margin: 20px 0; width: 260px; }
+        .calendar-month { font-weight: bold; color: var(--accent); margin-bottom: 10px; font-size: 0.9rem; }
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; font-size: 0.7rem; }
+        .calendar-day.highlight { background: var(--accent); color: white; border-radius: 50%; font-weight: bold; padding: 3px; }
+        .timer { display: flex; gap: 8px; margin: 20px 0; justify-content: center; }
+        .timer-unit { background: white; padding: 8px; border-radius: 12px; min-width: 45px; box-shadow: 0 5px 15px rgba(216,27,96,0.05); color: var(--accent); font-weight: bold; }
+        .timer-unit small { font-size: 0.5rem; display: block; color: #aaa; text-transform: uppercase; }
+        .rsvp-card { background: white; padding: 25px; border-radius: 30px; max-width: 300px; margin: 40px auto; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: left; }
+        label { display: block; margin-top: 15px; font-size: 0.75rem; font-weight: bold; color: var(--accent); }
+        input, select { width: 100%; padding: 10px; margin: 5px 0; border-radius: 10px; border: 1px solid #fce4ec; box-sizing: border-box; }
+        .btn { background: var(--accent); color: white; padding: 15px; border: none; border-radius: 30px; width: 100%; cursor: pointer; font-weight: bold; margin-top: 20px; }
+        .handwritten { font-family: 'Dancing Script', cursive; font-size: 2rem; color: var(--accent); }
+        #music-btn { position: fixed; top: 20px; right: 20px; z-index: 1000; background: white; border-radius: 50%; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    </style>
 </head>
-<body> <div id="music-btn" ...
-    <section id="intro"> ... </section>
-<div id="music-btn" onclick="toggleMusic()">🔇</div>
-<audio id="bgMusic" loop preload="auto"><source src="ino.mp3" type="audio/mpeg"></audio>
+<body>
+    <div id="music-btn" onclick="toggleMusic()">🎵</div>
+    <audio id="bgMusic" loop>
+        <source src="ino.mp3" type="audio/mpeg">
+    </audio>
 
-<section id="intro">
-    <div class="title">KARA'S</div>
-    <div style="font-size: 1.2em; letter-spacing: 2px; font-weight: 300;">13th Birthday Party</div>
-    <div style="font-style: italic; color: #888; margin-top: 10px;">սպասում եմ քեզ...</div>
-    
-    <div class="timer">
-        <div class="timer-unit"><span id="days">0</span><small>Օր</small></div>
-        <div class="timer-unit"><span id="hours">0</span><small>Ժամ</small></div>
-        <div class="timer-unit"><span id="mins">0</span><small>Րոպե</small></div>
-        <div class="timer-unit"><span id="secs">0</span><small>Վրկ</small></div>
-    </div>
-    <div style="font-size: 25px; animation: bounce 2s infinite; opacity: 0.3; margin-top: 20px;">👇</div>
-</section>
+    <section id="intro" class="reveal active">
+        <h1 class="title">KARA'S</h1>
+        <p>Birthday Party</p>
+        
+        <div class="calendar-container">
+            <div class="calendar-month">ՄԱՅԻՍ 2026</div>
+            <div class="calendar-grid">
+                <div style="color:#ccc">Ե</div><div style="color:#ccc">Ե</div><div style="color:#ccc">Չ</div><div style="color:#ccc">Հ</div><div style="color:#ccc">Ո</div><div style="color:#ccc">Շ</div><div style="color:#ccc">Կ</div>
+                <div></div><div></div><div></div><div></div>1<div>2</div><div>3</div>
+                <div>4</div><div class="calendar-day highlight">5</div><div>6</div><div>7</div><div>8</div><div>9</div><div>10</div>
+                <div>11</div><div>12</div><div>13</div><div>14</div><div>15</div><div>16</div><div>17</div>
+            </div>
+        </div>
 
-<section style="padding: 40px 20px;">
-    <div class="reveal">
-        <p>🍴 <b>Ռեստորան «Բարդիներ»</b><br>Հրազդանի կիրճ 71</p>
-        <a href="https://maps.google.com" target="_blank" style="color:var(--accent); text-decoration:none; font-weight:bold;">📍 Տեսնել քարտեզում</a>
-    </div>
-</section>
-<section style="padding: 40px 20px; background: white;">
-    <h2 class="reveal" style="color: var(--accent); letter-spacing: 3px;">TIMING</h2>
-    <div class="timing-container">
-        <div class="timing-item reveal"><b>17:00</b><br>Հյուրերի դիմավորում</div>
-        <div class="timing-item reveal"><b>18:00</b><br>Ֆոտոսեսիա</div>
-        <div class="timing-item reveal"><b>21:00</b><br>Տորթի արարողություն</div>
-    </div>
-</section>
+        <div class="handwritten">սպասում եմ քեզ...</div>
+        
+        <div class="timer">
+            <div class="timer-unit"><span id="days">0</span><small>օր</small></div>
+            <div class="timer-unit"><span id="hours">0</span><small>ժամ</small></div>
+            <div class="timer-unit"><span id="mins">0</span><small>րոպե</small></div>
+            <div class="timer-unit"><span id="secs">0</span><small>վրկ</small></div>
+        </div>
+    </section>
 
-<section style="padding: 60px 20px;">
-    <div class="reveal">
-        <p>🎁 Նվերները <b style="color:var(--accent)">Miniso</b>-ից կխրախուսվեն :)</p>
+    <section class="reveal">
         <div class="rsvp-card">
-            <form action="https://formspree.io/f/mpqowyyd" method="POST">
-                <h2 style="color: var(--accent); margin-bottom: 20px;">RSVP</h2>
-                <input type="text" name="Name" placeholder="Անուն Ազգանուն" required>
-                <div style="display: flex; gap: 10px;">
-                    <input type="number" name="Adults" placeholder="Մեծեր" required>
-                    <input type="number" name="Children" placeholder="Փոքրեր" required>
-                </div>
-                <input type="text" name="Song" placeholder="Ի՞նչ երգ կուզեիք լսել">
-                <button type="submit" class="btn">ՀԱՍՏԱՏԵԼ</button>
-            </form>
+            <h2 style="text-align: center; color: var(--accent); margin: 0;">RSVP</h2>
+            <p style="text-align: center; font-size: 0.7rem; margin-bottom: 20px;">Հետադարձ կապ</p>
+            
+            <label>Անուն Ազգանուն</label>
+            <input type="text" id="guestName" placeholder="Մուտքագրեք...">
+            
+            <label>Հյուրերի քանակ</label>
+            <select id="guestCount">
+                <option value="1">1 հոգի</option>
+                <option value="2">2 հոգի</option>
+                <option value="3">3 հոգի</option>
+                <option value="4+">4 և ավել</option>
+            </select>
+
+            <label>Քանի՞ մեծ և քանի՞ երեխա</label>
+            <input type="text" id="details" placeholder="Օրինակ՝ 2 մեծ, 1 երեխա">
+
+            <button class="btn" onclick="sendRSVP()">ՀԱՍՏԱՏԵԼ</button>
         </div>
-
-        <div class="handwritten">Սիրով՝ Կառա</div>
-        <div style="margin-top: 10px; color: #888; font-size: 0.9em;">
-            Հետադարձ կապ՝ <a href="tel:+37444444444" style="color:var(--accent); text-decoration:none;">+374 44 44 44 44</a>
-        </div>
-    </div>
-</section>
-<script>
-    const audio = document.getElementById('bgMusic');
-    const musicBtn = document.getElementById('music-btn');
-
-    function startMusic() {
-        if (audio.paused) {
-            audio.currentTime = 45; 
-            audio.play().then(() => { musicBtn.innerText = "🔊"; }).catch(() => {});
-        }
-    }
-
-    function toggleMusic() {
-        if (audio.paused) { audio.play(); musicBtn.innerText = "🔊"; } 
-        else { audio.pause(); musicBtn.innerText = "🔇"; }
-    }
-
-    function reveal() {
-        var reveals = document.querySelectorAll(".reveal");
-        for (var i = 0; i < reveals.length; i++) {
-            var windowHeight = window.innerHeight;
-            var elementTop = reveals[i].getBoundingClientRect().top;
-            if (elementTop < windowHeight - 50) { reveals[i].classList.add("active"); }
-        }
-    }
-
-    window.addEventListener('scroll', () => { reveal(); startMusic(); });
-    window.addEventListener('click', startMusic, {once: true});
-    window.addEventListener('touchstart', startMusic, {once: true});
-
-    const targetDate = new Date(2026, 4, 5, 17, 0, 0).getTime();
-    setInterval(() => {
-        const now = new Date().getTime();
-        const diff = targetDate - now;
-        document.getElementById("days").innerText = Math.max(0, Math.floor(diff / (1000 * 60 * 60 * 24)));
-        document.getElementById("hours").innerText = Math.max(0, Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
-        document.getElementById("mins").innerText = Math.max(0, Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)));
-        document.getElementById("secs").innerText = Math.max(0, Math.floor((diff % (1000 * 60)) / 1000));
-    }, 1000);
+    </section>
     <script>
-        reveal () ;
-</script>
+        const audio = document.getElementById("bgMusic");
+        function toggleMusic() {
+            if (audio.paused) { audio.play(); document.getElementById("music-btn").innerText = "🔊"; }
+            else { audio.pause(); document.getElementById("music-btn").innerText = "🔇"; }
+        }
+
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 50) { reveals[i].classList.add("active"); }
+            }
+        }
+        window.addEventListener('scroll', reveal);
+
+        const targetDate = new Date(2026, 4, 5, 17, 0, 0).getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+            document.getElementById("days").innerText = Math.max(0, Math.floor(diff / (1000 * 60 * 60 * 24)));
+            document.getElementById("hours").innerText = Math.max(0, Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+            document.getElementById("mins").innerText = Math.max(0, Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)));
+            document.getElementById("secs").innerText = Math.max(0, Math.floor((diff % (1000 * 60)) / 1000));
+        }, 1000);
+
+        function sendRSVP() {
+            const name = document.getElementById("guestName").value;
+            if (name) { alert("Շնորհակալություն, " + name + "!"); }
+            else { alert("Խնդրում եմ լրացնել անունը:"); }
+        }
+        reveal();
+    </script>
 </body>
 </html>
-
+    
