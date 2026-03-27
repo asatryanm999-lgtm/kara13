@@ -1,4 +1,8 @@
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
     :root { --pink-bg: #fff5f8; --accent: #d81b60; --text: #5d4037; }
     body, html { margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; background: var(--pink-bg); color: var(--text); scroll-behavior: smooth; overflow-x: hidden; text-align: center; }
@@ -117,7 +121,8 @@
         document.getElementById("mins").innerText = Math.max(0, Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)));
         document.getElementById("secs").innerText = Math.max(0, Math.floor((diff % (1000 * 60)) / 1000));
     }, 1000);
-
+</head>
+    </html
     reveal();
 </script>
 
